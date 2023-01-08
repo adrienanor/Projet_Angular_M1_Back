@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
+let utilisateur = require('./routes/utilisateurs');
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -46,6 +47,12 @@ const prefix = '/api';
 
 app.route(prefix + '/assignments')
   .get(assignment.getAssignments);
+ 
+app.route(prefix + '/utilisateurs')
+.get(utilisateur.getUtilisateurs);
+
+app.route(prefix + '/utilisateurs/:nomUtil/:mdp')
+.get(utilisateur.getUtilisateur);
 
 app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
