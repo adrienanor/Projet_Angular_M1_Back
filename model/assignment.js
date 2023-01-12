@@ -8,7 +8,8 @@ let AssignmentSchema = Schema({
     rendu: Boolean,
     auteur: String,
     note: Number,
-    remarque: String
+    remarque: String,
+    matiere: String
 });
 
 // C'est à travers ce modèle Mongoose qu'on pourra faire le CRUD
