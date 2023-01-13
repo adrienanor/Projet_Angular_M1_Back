@@ -3,13 +3,11 @@ let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
 let utilisateur = require('./routes/utilisateurs');
+let matiere = require('./routes/matieres');
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-//mongoose.set('debug', true);
 
-// remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
-//const uri = 'mongodb+srv://mb:P7zM3VePm0caWA1L@cluster0.zqtee.mongodb.net/assignments?retryWrites=true&w=majority';
 const uri = 'mongodb+srv://admin:admin@cluster0.k2g1rlg.mongodb.net/assignments?retryWrites=true&w=majority';
 
 const options = {
@@ -50,6 +48,12 @@ app.route(prefix + '/assignments')
  
 app.route(prefix + '/utilisateurs')
 .get(utilisateur.getUtilisateurs);
+
+app.route(prefix + '/matieres')
+    .get(matiere.getMatieres);
+
+app.route(prefix + '/matieres/:id')
+    .get(matiere.getMatiere);
 
 app.route(prefix + '/utilisateurs/:nomUtil/:mdp')
 .get(utilisateur.getUtilisateur);

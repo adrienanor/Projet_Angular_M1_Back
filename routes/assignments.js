@@ -2,7 +2,7 @@ let Assignment = require('../model/assignment');
 
 // Récupérer tous les assignments (GET)
 function getAssignments(req, res){
-    Assignment.find((err, assignments) => {
+    Assignment.find().populate('matiere').exec((err, assignments) => {
         if(err){
             res.send(err)
         }
@@ -15,10 +15,10 @@ function getAssignments(req, res){
 function getAssignment(req, res){
     let assignmentId = req.params.id;
 
-    Assignment.findOne({id: assignmentId}, (err, assignment) =>{
+    Assignment.findOne({id: assignmentId}).populate('matiere').exec((err, assignment) =>{
         if(err){res.send(err)}
         res.json(assignment);
-    })
+    });
 
 }
 
@@ -29,6 +29,7 @@ function postAssignment(req, res){
     assignment.nom = req.body.nom;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
+    assignment.matiere = req.body.matiere;
 
     console.log("POST assignment reçu :");
     console.log(assignment)

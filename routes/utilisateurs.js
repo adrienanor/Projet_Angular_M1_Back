@@ -11,7 +11,7 @@ function getUtilisateurs(req, res){
     });
 }
 
-// Récupérer un assignment par son id (GET)
+
 function getUtilisateur(req, res){
     let paramsNomUtil = req.params.nomUtil;
     let paramsMdp = req.params.mdp;
