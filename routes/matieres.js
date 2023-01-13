@@ -30,4 +30,21 @@ function getMatiere(req, res){
     });
 }
 
-module.exports = { getMatieres, getMatiere};
+function postMatiere(req, res){
+    let matiere = new Matieres();
+    matiere.id = req.body.id;
+    matiere.nom = req.body.nom;
+    matiere.professeur = req.body.professeur;
+
+    console.log("POST matiere reçu :");
+    console.log(matiere)
+
+    matiere.save( (err) => {
+        if(err){
+            res.send('cant post matiere ', err);
+        }
+        res.json({ message: `${matiere.nom} saved!`})
+    })
+}
+
+module.exports = { getMatieres, getMatiere, postMatiere};
