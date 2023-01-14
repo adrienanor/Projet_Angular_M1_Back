@@ -43,27 +43,30 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
-app.route(prefix + '/assignments')
-  .get(assignment.getAssignments);
- 
-app.route(prefix + '/utilisateurs')
-.get(utilisateur.getUtilisateurs);
-
 app.route(prefix + '/matieres')
     .get(matiere.getMatieres);
 
 app.route(prefix + '/matieres/:id')
     .get(matiere.getMatiere);
 
+app.route(prefix + '/matieres')
+    .post(matiere.postMatiere);
+
+app.route(prefix + '/utilisateurs')
+    .get(utilisateur.getUtilisateurs);
+
+app.route(prefix + '/utilisateurs')
+    .post(utilisateur.postUtilisateur);
+
 app.route(prefix + '/utilisateurs/:nomUtil/:mdp')
 .get(utilisateur.getUtilisateur);
+
+app.route(prefix + '/assignments')
+    .get(assignment.getAssignments);
 
 app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
-
-app.route(prefix + '/matieres')
-    .post(matiere.postMatiere);
 
 app.route(prefix + '/assignments')
   .post(assignment.postAssignment)

@@ -1,4 +1,5 @@
 let Utilisateur = require('../model/utilisateur');
+const Matieres = require("../model/matiere");
 
 // Récupérer tous les assignments (GET)
 function getUtilisateurs(req, res){
@@ -25,7 +26,22 @@ function getUtilisateur(req, res){
 
 }
 
+function postUtilisateur(req, res){
+    let utilisateur = new Utilisateur();
+    utilisateur.nomUtil = req.body.nomUtil;
+    utilisateur.mdp = req.body.mdp;
+
+    console.log("POST utilisateur reçu :");
+    console.log(utilisateur)
+
+    utilisateur.save( (err) => {
+        if(err){
+            res.send('cant post matiere ', err);
+        }
+        res.json({ message: `${utilisateur.nomUtil} saved!`})
+    })
+}
 
 
 
-module.exports = { getUtilisateurs, getUtilisateur};
+module.exports = { getUtilisateurs, getUtilisateur, postUtilisateur};
