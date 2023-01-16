@@ -4,7 +4,8 @@ let Schema = mongoose.Schema;
 let UtilisateurSchema = Schema({
     nomUtil: String,
     mdp: String,
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    email: String,
 });
 
 // C'est à travers ce modèle Mongoose qu'on pourra faire le CRUD

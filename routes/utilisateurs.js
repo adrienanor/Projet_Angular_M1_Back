@@ -3,7 +3,7 @@ const Matieres = require("../model/matiere");
 
 // Récupérer tous les assignments (GET)
 function getUtilisateurs(req, res){
-    Utilisateur.find((err, utilisateurs) => {
+    Utilisateur.find({isAdmin: false}, (err, utilisateurs) => {
         if(err){
             res.send(err)
         }
@@ -30,6 +30,7 @@ function postUtilisateur(req, res){
     let utilisateur = new Utilisateur();
     utilisateur.nomUtil = req.body.nomUtil;
     utilisateur.mdp = req.body.mdp;
+    utilisateur.email = req.body.email;
 
     console.log("POST utilisateur reçu :");
     console.log(utilisateur)
