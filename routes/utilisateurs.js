@@ -30,6 +30,7 @@ function postUtilisateur(req, res){
     let utilisateur = new Utilisateur();
     utilisateur.nomUtil = req.body.nomUtil;
     utilisateur.mdp = req.body.mdp;
+    utilisateur.isAdmin = req.body.isAdmin;
     utilisateur.email = req.body.email;
 
     console.log("POST utilisateur reçu :");
